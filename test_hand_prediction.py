@@ -78,7 +78,7 @@ def main():
         session = tf.Session(config=config)
 
         # TODO CHANGE WITH EVERY NEW MODEL
-        tf_model = load_model('test_dynamic_03_25_2021_12_59_29.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
+        tf_model = load_model('test_dynamic_04_08_2021_13_26_29.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
 
         # Capture Frames
         cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Use webcam
