@@ -19,16 +19,20 @@ Software Libraries: OpenPose, TensorFlow Keras, OpenCV, scikit-learn, numpy.
 ## How We Built It
  Firstly, built a dataset by recording our own hand gestures, combining for:
  
-     -> 6000 total labeled inputs
+     -> ~6,000 total labeled inputs
      
-     -> 1500 labels per hand gesture
+     -> ~1,500 labels per hand gesture
      
-     -> 120,000 frames recorded in total
+     -> ~120,000 frames recorded in total
      
 
 Secondly, training a CNN by using TensorFlow Keras. 
 
 Lastly, creating a demo application, which uses the trained model in order to predict a persons hand gestures.
+
+# Known Issues
+
+The program currently sometimes has difficulty recognizing "A" and will misread it as "W" or "Hello". This could be solved by recollecting the data for "A". Aside from the issue with "A", our program works as expected. If data is recollected that would contribute to a more accurate program. 
 
 # Gestures
 
