@@ -47,7 +47,9 @@ Hello: &nbsp;
 Thank you: &nbsp;
 
 ![](images/thankyou1.png "thankyou1")
+
 ![](images/thankyou2.png "thankyou2")
+
 ![](images/thankyou3.png "thankyou3")
 
 
