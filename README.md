@@ -30,7 +30,7 @@ Secondly, training a CNN by using TensorFlow Keras.
 
 Lastly, creating a demo application, which uses the trained model in order to predict a persons hand gestures.
 
-# Images
+# Gestures
 
 A: &nbsp;
 
