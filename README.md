@@ -29,15 +29,19 @@ Lastly, creating a demo application, which uses the trained model in order to pr
 # Images
 
 A: &nbsp;
+
 ![](images/A.png "A")
 
 W: &nbsp;
+
 ![](images/W.png "W")
 
 Hello: &nbsp;
+
 ![](images/hello.png "Hello")
 
 Thank you: &nbsp;
+
 ![](images/thankyou1.png "thankyou1")
 ![](images/thankyou2.png "thankyou2")
 ![](images/thankyou3.png "thankyou3")
