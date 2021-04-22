@@ -12,6 +12,11 @@
     Hackron 4k (10/5/19 - 10/6/19) - Hand Gesture Recognition with Machine Learning
     github: https://github.com/Fasko/Hand-Gesture-Recognition
 
+    0 --> Hello
+    1 --> Thank You
+    2 --> A (static)
+    3 --> W (static)
+
  # NOTE: Pass '--number_people_max 1' as an argument for best efficiency
 '''
 
@@ -78,7 +83,7 @@ def main():
         session = tf.Session(config=config)
 
         # TODO CHANGE WITH EVERY NEW MODEL
-        tf_model = load_model('test_dynamic_04_08_2021_13_26_29.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
+        tf_model = load_model('Models/dynamic_kfold-1_model_date_04-22-2021_time_16-20-09.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
 
         # Capture Frames
         cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Use webcam

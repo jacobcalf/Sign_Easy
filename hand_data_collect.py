@@ -10,11 +10,12 @@
     0 --> Hello
     1 --> Thank You
     2 --> A (static)
-    3 -->
+    3 --> W (static)
 
  # NOTE: Pass '--number_people_max 1' as an argument for best efficiency
 '''
 
+import resize_data
 import argparse
 import csv
 import os
@@ -191,6 +192,16 @@ try:
             print("Terminating Program")
             exit()
 
+    # We are done recording, so we close the capture
+    cap.release()
+
 except Exception as e:
      print(e)
      sys.exit(-1)
+
+print("\n\nCreating one row file....")
+
+# Prepare data
+resize_data.resize()
+
+print("\n\n All done!")

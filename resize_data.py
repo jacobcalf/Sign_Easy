@@ -1,56 +1,61 @@
-import time
+'''
+# Jacob Calfee, Peter Hart, Louis Wenner
+# Cleveland State University
+# Senior Design Capstone August 2020-May 2021 - SignEasy: Dynamic American Sign Language Recognition with Machine Learning
+
+ # File is responsible for collecting and writing OpenPose 2D skeleton coordinates. Program writes the 21 X,Y coordinates
+    of the right-hand using OpenPose's hand detector. This program also resizes the data, so instead of each row representing
+    one frame, we want one row to append all frames onto it. The number of columns will be 840 after appending.
+ # Unique gestures were obtained with the following labels:
+    0 --> Hello
+    1 --> Thank You
+    2 --> A (static)
+    3 --> W (static)
+
+ # NOTE: Pass '--number_people_max 1' as an argument for best efficiency
+'''
+
 import numpy
-import tensorflow as tf
-from keras.layers import Dense, Dropout, Flatten, Reshape
-from keras.models import Sequential
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import Normalizer
-import argparse
 import csv
-import os
-import sys
-import cv2
 
-def main():
-    # TODO CHANGE OUTPUT_DIM WITH EVERY NEW SYMBOL
-    output_dimension = 2
 
-    # Hyper Parameters
-    BATCH_SIZE = 32
-    EPOCH = 24
-    seed = 7
-    numpy.random.seed(seed)
+def resize():
+    # Declare the variables
     n_steps = 20
-    TIME_PERIODS = 20
+    time_periods = 20
     number_sensors = 42
-    input_shape = (TIME_PERIODS * number_sensors)
-    print(input_shape)
-    print(TIME_PERIODS, " ", number_sensors)
+    label_column = number_sensors + 1
 
-    # Load CSV dataset with X (training data) and Y (label)
-    raw_dataset = numpy.loadtxt("asl_signs.csv", delimiter=",")  # right_hand_dataset_reduced10.csv
+    # Load CSV data set with X (training data) and Y (label)
+    raw_dataset = numpy.loadtxt("asl_signs.csv", delimiter=",")
+
     # Get the first 42 numbers on the line (the coordinates)
-    X = raw_dataset[:, 0:42]
+    X = raw_dataset[:, 0:number_sensors]
 
     # Get the frame stamp for each X,Y coordinate set
-    time_stamps = raw_dataset[:, 42]
+    #   Unused, but left for reference.
+    time_stamps = raw_dataset[:, number_sensors]
 
     # Get the labels
-    Y = raw_dataset[:, 43]
+    Y = raw_dataset[:, label_column]
     lap_buffer = []
-    X, Y = create_segments_and_labels(X, TIME_PERIODS, n_steps, Y)
+    X, Y = create_segments_and_labels(X, time_periods, n_steps, Y)
 
+    # Combine frames into one row
     for i in range(len(X) - 1):
         row = X[i] + [Y[i]]
-        print(row)
-        lap_buffer.append(row)
+        if 0.0 not in row[0:number_sensors]:
+            # print(row)
+            lap_buffer.append(row)
 
-    with open('asl_signs_one_row.csv', mode='a', newline='') as csv_file:
+    # Make new .csv file that contains the frames in one row
+    with open('asl_signs_one_row.csv', mode='w', newline='') as csv_file:
         writer = csv.writer(csv_file)
         # After break write data to row and start new lap
         for x in lap_buffer:
             writer.writerow(x)
         # Counting data for dynamic collection
+
 
 def create_segments_and_labels(df, time_steps, step, label_name):
     N_FEATURES = 42
@@ -65,12 +70,7 @@ def create_segments_and_labels(df, time_steps, step, label_name):
 
         segments.append(base)
         label_array.append(label_name[i])
-        #print(segments.shape)
 
-    print("Segment: ", segments, "\n")
-    # reshaped = numpy.asarray(segments, dtype= numpy.float32).reshape(-1, time_steps, N_FEATURES)
+    # print("Segment: ", segments, "\n")
 
     return segments, label_array
-
-if __name__ == "__main__":
-    main()
