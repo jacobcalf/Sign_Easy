@@ -28,11 +28,17 @@ Software Libraries: OpenPose, TensorFlow Keras, OpenCV, scikit-learn, numpy.
 
 Secondly, training a CNN by using TensorFlow Keras. 
 
-Lastly, creating a demo application, which uses the trained model in order to predict a persons hand gestures.
+Lastly, creating a demo application, which uses the trained model in order to predict a persons hand gestures. After testing with 10-Fold cross validation, the average model model loss and accuracy was:
+
+     -> An accuracy of ~98.4%
+     
+     -> A loss of ~0.06 
+
+
 
 # Known Issues
 
-The program currently sometimes has difficulty recognizing "A" and will misread it as "W" or "Hello". This could be solved by recollecting the data for "A". Aside from the issue with "A", our program works as expected. If data is recollected that would contribute to a more accurate program. 
+The program currently sometimes recieves false positives. This could be resolved by recollecting the data to improve it's consistency, or modifying the threshold for accepting a prediction. Generally speaking, our program works as expected. 
 
 # Gestures
 
