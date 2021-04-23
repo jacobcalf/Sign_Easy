@@ -83,7 +83,7 @@ def main():
         session = tf.Session(config=config)
 
         # TODO CHANGE WITH EVERY NEW MODEL
-        tf_model = load_model('Models/dynamic_kfold-1_model_date_04-22-2021_time_16-20-09.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
+        tf_model = load_model('Models/dynamic_kfold-7_model_date_04-23-2021_time_18-51-49.h5') # 'normalized_epochs200_10_data_points10_06_2019_02_00_54.h5
 
         # Capture Frames
         cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Use webcam

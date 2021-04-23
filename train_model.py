@@ -35,7 +35,7 @@ def main():
 
     # Parameters
     batch_size = 32
-    num_epochs = 7
+    num_epochs = 30
     seed = 7
     np.random.seed(seed)
     n_steps = 20
@@ -83,6 +83,8 @@ def main():
         # Hidden Layers
         model.add(Dense(64, activation='relu'))
         model.add(Dense(32, activation='relu'))
+        model.add(Dense(32, activation='relu'))
+        model.add(Dense(16, activation='relu'))
         model.add(Dropout(0.5))
         model.add(Flatten())
         # Final Layer
@@ -106,8 +108,8 @@ def main():
         cm = confusion_matrix(y_true=Y[test], y_pred=y_pred)
 
         # Prepare the presentation for the confusion matrix
-        title = "Confusion Matrix for Wine Classification"
-        plt_confusion_matrix(cm, labels, title)
+        title = "Confusion Matrix for Gesture Classification"
+        plt_confusion_matrix(cm, labels, title, fold_no)
 
         # Record the date the model was made
         t = time.localtime()
@@ -166,10 +168,10 @@ def main():
     print("-----------------------------------------------------------")
 
     # Show the confusion matrices
-    plt.show()
+    # plt.show()
 
 
-def plt_confusion_matrix(cm, labels, title):
+def plt_confusion_matrix(cm, labels, title, fold_no):
     # Makes everything blue, which is my favorite color
     cmap = plt.cm.Blues
 
@@ -194,6 +196,10 @@ def plt_confusion_matrix(cm, labels, title):
             ax.text(j, i, format(cm[i, j], 'd'),
                     ha="center", va="center",
                     color="white" if cm[i, j] > thresh else "black")
+
+    file_name = "Confusion_Matrices/Confusion-Matrix-" + str(fold_no) + ".png"
+    plt.savefig(file_name)
+    plt.close()
 
 
 def create_segments_and_labels(df, time_steps, step, label_name):
